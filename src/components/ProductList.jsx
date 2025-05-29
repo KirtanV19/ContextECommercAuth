@@ -1,11 +1,11 @@
 import { useContext } from "react";
 import { Products } from "../assets/utils/Products";
-import { ShopContext } from "../context/ShopContext";
+import { ProductContext } from '../context/ProductContext'
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 const ProductList = () => {
-    const { addToCart } = useContext(AuthContext);
+    const { addToCart, products } = useContext(ProductContext);
     const { user } = useContext(AuthContext)
     let navigate = useNavigate();
 
@@ -21,7 +21,7 @@ const ProductList = () => {
             <div className="bg-white rounded-lg shadow p-6">
                 <h2 className="text-2xl font-semibold mb-6">Products</h2>
                 <div className="grid gap-4">
-                    {Products.map((product) => (
+                    {products.map((product) => (
                         <div
                             key={product.id}
                             className="border rounded-lg p-4 flex justify-between items-center"
@@ -31,7 +31,7 @@ const ProductList = () => {
                                 <p className="text-gray-600">Price: ${product.price}</p>
                             </div>
                             <button
-                                onClick={handleClick}
+                                onClick={() => handleClick(product)}
                                 className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg transition-colors"
                             >
                                 Add To Cart

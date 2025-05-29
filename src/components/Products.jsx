@@ -125,7 +125,7 @@ const Products = () => {
                                     </div>
                                     <div>
                                         <button
-                                            onClick={handleAddToCart}
+                                            onClick={() => handleAddToCart(product)}
                                             className="bg-blue-500 text-white px-2 py-1 rounded-lg hover:bg-blue-600 transition-colors"
                                         >
                                             Add to Cart

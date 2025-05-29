@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 export const ProductContext = createContext();
 
 export const ProductProvider = ({ children }) => {
+
     const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
@@ -58,6 +59,7 @@ export const ProductProvider = ({ children }) => {
             setCart([...cart, { ...product, quantity: 1 }]);
         }
         toast.success(`${product.title} added`);
+        console.log('product', product)
     };
 
     const removeFromCart = (id) => {

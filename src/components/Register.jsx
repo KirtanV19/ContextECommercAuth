@@ -4,7 +4,7 @@ import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
 
 const Register = () => {
-    const { register } = useContext(AuthContext);
+    const { login } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const [email, setEmail] = useState("");
@@ -13,12 +13,13 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const success = register(email, password);
-        if (success) {
+        // Mock registration logic
+        if (email && password) {
+            login({ email }); // auto login after register
             toast.success("Registered successfully");
             navigate("/");
         } else {
-            toast.error("User already exists");
+            toast.error("All fields required");
         }
     };
 
