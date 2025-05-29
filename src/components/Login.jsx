@@ -12,14 +12,13 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const success = login(email, password);
 
-    // Mock login logic
-    if (email === "user@example.com" && password === "123456") {
-      login({ email }); // update auth context
+    if (success) {
       toast.success("Logged in successfully");
       navigate("/");
     } else {
-      toast.error("Invalid credentials");
+      toast.error("Invalid email or password");
     }
   };
 
