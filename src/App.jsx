@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { ProductProvider } from "./context/ProductContext";
 import { AuthProvider } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
@@ -11,20 +12,30 @@ import AuthRoute from "./routes/AuthRoute";
 import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Splashscreen from "./components/Splashscreen";
 
 const App = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (showSplash) {
+    return <Splashscreen />;
+  }
+
   return (
     <Router>
       <AuthProvider>
         <ProductProvider>
           <Toaster />
           <Navbar />
-
           <Routes>
             {/* Public Routes */}
             <Route path="/" element={<Products />} />
             <Route path="/about" element={<About />} />
-
             {/* Protected Route */}
             <Route
               path="/cart"
@@ -34,7 +45,6 @@ const App = () => {
                 </ProtectedRoute>
               }
             />
-
             {/* Auth Routes */}
             <Route
               path="/login"
