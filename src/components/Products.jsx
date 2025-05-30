@@ -69,11 +69,11 @@ const Products = () => {
             <PageWrapper>
                 <div className="container mx-auto px-4 py-8">
                     <>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 ">
                             {filteredProducts.map((product) => (
                                 <Card
                                     key={product.id}
-                                    className="w-full shadow-lg hover:shadow-xl transition-shadow duration-300"
+                                    className="w-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 "
                                 >
                                     <CardHeader
                                         floated={false}

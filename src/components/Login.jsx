@@ -28,8 +28,8 @@ const Login = () => {
 
   return (
     <PageWrapper>
-      <div className="flex items-center justify-center min-h-[70vh] bg-gray-50">
-        <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+      <div className="flex items-center justify-center min-h-[70vh] bg-gray-50 ">
+        <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8 hover:scale-110 hover:shadow-xl transition-all">
           <h2 className="text-2xl font-bold text-center text-blue-600 mb-6">
             Login
           </h2>
