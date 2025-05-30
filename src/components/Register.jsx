@@ -57,7 +57,7 @@ const Register = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: yupResolver(schema), mode: "onTouched" });
+    } = useForm({ resolver: yupResolver(schema), mode: "all" });
 
     const onSubmit = (data) => {
         const success = registerUser(data.email, data.password);
@@ -104,13 +104,12 @@ const Register = () => {
                             >
                                 {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
                             </span>
-
-                            {errors.password && (
-                                <p className="text-red-500 text-xs mt-1">
-                                    {errors.password.message}
-                                </p>
-                            )}
                         </div>
+                        {errors.password && (
+                            <p className="text-red-500 text-xs mt-1">
+                                {errors.password.message}
+                            </p>
+                        )}
 
                         {/* Password rule feedback */}
                         <div className="mt-3 space-y-1">
@@ -118,8 +117,8 @@ const Register = () => {
                                 <p
                                     key={index}
                                     className={`flex items-center gap-2 text-sm transform transition-all duration-300 ease-in-out ${check.passed
-                                            ? "text-green-600 opacity-100 translate-y-0"
-                                            : "text-gray-400 opacity-60 -translate-y-1"
+                                        ? "text-green-600 opacity-100 translate-y-0"
+                                        : "text-gray-400 opacity-60 -translate-y-1"
                                         }`}
                                 >
                                     <span>{check.passed ? "✓" : "✗"}</span>
