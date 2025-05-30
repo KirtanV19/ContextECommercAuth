@@ -13,7 +13,12 @@ const Splashscreen = () => {
             <motion.h1
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                transition={{ type: "spring", stiffness: 100 }}
+                transition={{
+                    type: "tween",
+                    duration: 1,
+                    ease: "easeInOut",
+                }}
+
                 className="font-black text-3xl text-blue-600 place-self-center"
             >
                 Welcome to E Commerce !!!
