@@ -13,6 +13,7 @@ import NotFound from "./components/NotFound";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Splashscreen from "./components/Splashscreen";
+import { AnimatePresence } from "framer-motion";
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -22,52 +23,54 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  if (showSplash) {
-    return <Splashscreen />;
-  }
-
   return (
-    <Router>
-      <AuthProvider>
-        <ProductProvider>
-          <Toaster />
-          <Navbar />
-          <Routes>
-            {/* Public Routes */}
-            <Route path="/" element={<Products />} />
-            <Route path="/about" element={<About />} />
-            {/* Protected Route */}
-            <Route
-              path="/cart"
-              element={
-                <ProtectedRoute>
-                  <ProductCart />
-                </ProtectedRoute>
-              }
-            />
-            {/* Auth Routes */}
-            <Route
-              path="/login"
-              element={
-                <AuthRoute>
-                  <Login />
-                </AuthRoute>
-              }
-            />
-            <Route
-              path="/register"
-              element={
-                <AuthRoute>
-                  <Register />
-                </AuthRoute>
-              }
-            />
-            {/* Not Found */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </ProductProvider>
-      </AuthProvider>
-    </Router>
+    <AnimatePresence>
+      {showSplash ? (
+        <Splashscreen key="splash" />
+      ) : (
+        <Router key='main'>
+          <AuthProvider>
+            <ProductProvider>
+              <Toaster />
+              <Navbar />
+              <Routes>
+                {/* Public Routes */}
+                <Route path="/" element={<Products />} />
+                <Route path="/about" element={<About />} />
+                {/* Protected Route */}
+                <Route
+                  path="/cart"
+                  element={
+                    <ProtectedRoute>
+                      <ProductCart />
+                    </ProtectedRoute>
+                  }
+                />
+                {/* Auth Routes */}
+                <Route
+                  path="/login"
+                  element={
+                    <AuthRoute>
+                      <Login />
+                    </AuthRoute>
+                  }
+                />
+                <Route
+                  path="/register"
+                  element={
+                    <AuthRoute>
+                      <Register />
+                    </AuthRoute>
+                  }
+                />
+                {/* Not Found */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
+            </ProductProvider>
+          </AuthProvider>
+        </Router>
+      )}
+    </AnimatePresence>
   );
 };
 
