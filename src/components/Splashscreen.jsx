@@ -14,10 +14,10 @@ const Splashscreen = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{
-                    type: "inertia",
-                    velocity: 50,
-                    bounceStiffness: 200,
-                    bounceDamping: 20,
+                    type: "spring",
+                    stiffness: 120,
+                    damping: 10,
+                    mass: 1,
                 }}
                 className="font-black text-3xl text-blue-600 place-self-center"
             >

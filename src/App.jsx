@@ -75,16 +75,3 @@ const App = () => {
 };
 
 export default App;
-
-/*
-  <Router>
-    <ProductProvider>
-      <Toaster />
-      <ProductHeader />
-      <Routes>
-        <Route path="/" element={<Products />} />
-        <Route path="/cart" element={<ProductCart />} />
-      </Routes>
-    </ProductProvider>
-  </Router >
-*/
