@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { IoMdEye } from "react-icons/io";
+import { IoMdEyeOff } from "react-icons/io";
 
 const schema = yup.object({
     email: yup.string().email().required("Email is required"),
@@ -22,7 +24,6 @@ const schema = yup.object({
 });
 
 const getPasswordStrength = (password) => {
-
     return [
         {
             label: "At least 8 characters",
@@ -50,19 +51,19 @@ const getPasswordStrength = (password) => {
 const Register = () => {
     const { register: registerUser } = useContext(AuthContext);
     const navigate = useNavigate();
-    const [passwordValue, setPasswordValue] = useState('')
-
+    const [passwordValue, setPasswordValue] = useState("");
+    const [showPassword, setShowPassword] = useState(false);
     const {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: yupResolver(schema), mode: "all" });
+    } = useForm({ resolver: yupResolver(schema), mode: "onTouched" });
 
     const onSubmit = (data) => {
         const success = registerUser(data.email, data.password);
         if (success) {
             toast.success("Registered successfully");
-            navigate("/");
+            navigate("/login");
         } else {
             toast.error("User already exists");
         }
@@ -89,18 +90,27 @@ const Register = () => {
                         )}
                     </div>
                     <div>
-                        <input
-                            type="password"
-                            placeholder="Password"
-                            {...register("password")}
-                            onChange={(e) => setPasswordValue(e.target.value)}
-                            className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
-                        />
-                        {errors.password && (
-                            <p className="text-red-500 text-xs mt-1">
-                                {errors.password.message}
-                            </p>
-                        )}
+                        <div className="w-full border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-400 flex items-center px-3 py-2">
+                            <input
+                                type={showPassword ? "text" : "password"}
+                                placeholder="Password"
+                                {...register("password")}
+                                onChange={(e) => setPasswordValue(e.target.value)}
+                                className="flex-1 bg-transparent outline-none placeholder-gray-400"
+                            />
+                            <span
+                                onClick={() => setShowPassword(!showPassword)}
+                                className="ml-2 text-gray-500 hover:text-gray-700 cursor-pointer"
+                            >
+                                {showPassword ? <IoMdEyeOff /> : <IoMdEye />}
+                            </span>
+
+                            {errors.password && (
+                                <p className="text-red-500 text-xs mt-1">
+                                    {errors.password.message}
+                                </p>
+                            )}
+                        </div>
 
                         {/* Password rule feedback */}
                         <div className="mt-3 space-y-1">
