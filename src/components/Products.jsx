@@ -44,13 +44,7 @@ const Products = () => {
             );
         });
 
-    const handleClick = () => {
-        if (user) {
-            navigate("/cart");
-        } else {
-            navigate("/login");
-        }
-    };
+
 
     const handleAddToCart = (item) => {
         if (user) {
@@ -158,12 +152,7 @@ const Products = () => {
                             <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
                         </IconButton>
                     </div>
-                    <button
-                        onClick={handleClick}
-                        className="flex place-self-end mr-5 mt-2 bg-brown-500 hover:bg-brown-600 transition-colors px-4 py-2 rounded-lg text-white"
-                    >
-                        Go To Cart
-                    </button>
+
                 </>
             </div>
         </>

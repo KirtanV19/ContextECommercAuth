@@ -6,7 +6,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { Badge } from "@material-tailwind/react";
 
 const Navbar = () => {
-
     const navigate = useNavigate();
     const { user, logout } = useContext(AuthContext);
     const { cart, clearCart } = useContext(ProductContext);
