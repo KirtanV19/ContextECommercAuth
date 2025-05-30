@@ -29,7 +29,7 @@ const Register = () => {
         register,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver: yupResolver(schema), mode: 'all' });
+    } = useForm({ resolver: yupResolver(schema), mode: "all" });
 
     const onSubmit = (data) => {
         const success = registerUser(data.email, data.password);
@@ -76,7 +76,7 @@ const Register = () => {
                     </div>
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition font-semibold"
+                        className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-800 transition font-semibold"
                     >
                         Register
                     </button>

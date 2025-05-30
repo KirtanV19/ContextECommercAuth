@@ -69,7 +69,7 @@ const Navbar = () => {
                 {user ? (
                     <button
                         onClick={handleLogout}
-                        className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition font-semibold"
+                        className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-800 transition font-semibold"
                     >
                         Logout
                     </button>
@@ -83,7 +83,7 @@ const Navbar = () => {
                         </Link>
                         <Link
                             to="/register"
-                            className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-700 transition font-semibold"
+                            className="bg-blue-600 text-white px-4 py-1.5 rounded hover:bg-blue-800 transition font-semibold"
                         >
                             Register
                         </Link>
