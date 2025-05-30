@@ -14,11 +14,11 @@ const Splashscreen = () => {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{
-                    type: "tween",
-                    duration: 1,
-                    ease: "easeInOut",
+                    type: "inertia",
+                    velocity: 50,
+                    bounceStiffness: 200,
+                    bounceDamping: 20,
                 }}
-
                 className="font-black text-3xl text-blue-600 place-self-center"
             >
                 Welcome to E Commerce !!!
