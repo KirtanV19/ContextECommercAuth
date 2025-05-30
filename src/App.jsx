@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { ProductProvider } from "./context/ProductContext";
+
 import { AuthProvider } from "./context/AuthContext";
 import { Toaster } from "react-hot-toast";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
