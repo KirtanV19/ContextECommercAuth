@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ProductContext } from '../context/ProductContext'
+import { ProductContext } from "../context/ProductContext";
 import {
     Card,
     CardHeader,
@@ -15,8 +15,15 @@ import ProductHeader from "./ProductHeader";
 import { AuthContext } from "../context/AuthContext";
 
 const Products = () => {
-
-    const { products, addToCart, currentPage, setCurrentPage, totalPages, selectedCategories, searchQuery } = useContext(ProductContext);
+    const {
+        products,
+        addToCart,
+        currentPage,
+        setCurrentPage,
+        totalPages,
+        selectedCategories,
+        searchQuery,
+    } = useContext(ProductContext);
     const { user } = useContext(AuthContext);
 
     let navigate = useNavigate();
@@ -33,8 +40,11 @@ const Products = () => {
 
     // Filter products based on selected category and search query
     const filteredProducts = products
-        .filter(product => !selectedCategories || product.category === selectedCategories)
-        .filter(product => {
+        .filter(
+            (product) =>
+                !selectedCategories || product.category === selectedCategories
+        )
+        .filter((product) => {
             if (!searchQuery) return true;
             const query = searchQuery.toLowerCase();
             return (
@@ -44,16 +54,13 @@ const Products = () => {
             );
         });
 
-
-
     const handleAddToCart = (item) => {
         if (user) {
-            addToCart(item)
+            addToCart(item);
+        } else {
+            navigate("/login");
         }
-        else {
-            navigate('/login')
-        }
-    }
+    };
 
     return (
         <>
@@ -113,7 +120,8 @@ const Products = () => {
                                         </Typography>
                                         <Typography variant="lead" className="text-blue-gray-900">
                                             {product.discount
-                                                ? product.price - (product.price * product.discount) / 100
+                                                ? product.price -
+                                                (product.price * product.discount) / 100
                                                 : product.price}
                                         </Typography>
                                     </div>
@@ -152,7 +160,6 @@ const Products = () => {
                             <ArrowRightIcon strokeWidth={2} className="h-4 w-4" />
                         </IconButton>
                     </div>
-
                 </>
             </div>
         </>

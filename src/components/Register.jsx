@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 import toast from "react-hot-toast";
@@ -21,9 +21,36 @@ const schema = yup.object({
         ),
 });
 
+const getPasswordStrength = (password) => {
+
+    return [
+        {
+            label: "At least 8 characters",
+            passed: password.length >= 8,
+        },
+        {
+            label: "One lowercase letter",
+            passed: /[a-z]/.test(password),
+        },
+        {
+            label: "One uppercase letter",
+            passed: /[A-Z]/.test(password),
+        },
+        {
+            label: "One number",
+            passed: /\d/.test(password),
+        },
+        {
+            label: "One special character",
+            passed: /[@$!%*?&#^()\-_=+{};:,<.>]/.test(password),
+        },
+    ];
+};
+
 const Register = () => {
     const { register: registerUser } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [passwordValue, setPasswordValue] = useState('')
 
     const {
         register,
@@ -66,6 +93,7 @@ const Register = () => {
                             type="password"
                             placeholder="Password"
                             {...register("password")}
+                            onChange={(e) => setPasswordValue(e.target.value)}
                             className="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-400"
                         />
                         {errors.password && (
@@ -73,6 +101,22 @@ const Register = () => {
                                 {errors.password.message}
                             </p>
                         )}
+
+                        {/* Password rule feedback */}
+                        <div className="mt-3 space-y-1">
+                            {getPasswordStrength(passwordValue).map((check, index) => (
+                                <p
+                                    key={index}
+                                    className={`flex items-center gap-2 text-sm transform transition-all duration-300 ease-in-out ${check.passed
+                                        ? "text-green-600 opacity-100 translate-y-0"
+                                        : "text-gray-400 opacity-60 -translate-y-1"
+                                        }`}
+                                >
+                                    <span>{check.passed ? "✓" : "✗"}</span>
+                                    {check.label}
+                                </p>
+                            ))}
+                        </div>
                     </div>
                     <button
                         type="submit"
