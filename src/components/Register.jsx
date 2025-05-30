@@ -37,7 +37,7 @@ const getPasswordStrength = (password) => {
             passed: /[A-Z]/.test(password),
         },
         {
-            label: "One number",
+            label: "One number [0-9]",
             passed: /\d/.test(password),
         },
         {
