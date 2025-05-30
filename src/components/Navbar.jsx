@@ -64,7 +64,7 @@ const Navbar = () => {
                 {/* Cart Icon */}
                 <motion.button
                     whileHover={{ scale: 1.2, rotate: 360 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    transition={{ type: "spring", stiffness: 80 }}
                     onClick={handleCartClick}
                     className="relative flex items-center"
                     aria-label="Cart"
